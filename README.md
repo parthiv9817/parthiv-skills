@@ -58,3 +58,31 @@ methodology. Run both.
 
 The two sources converged on the same principles independently — which is the
 reason to trust them.
+
+## Persona & commands (the full assistant, not just the guardrails)
+
+- `persona/CLAUDE.md` — the global operating persona ("Zoro": JARVIS-style
+  assistant — candid, anticipatory, honesty-as-loyalty) + the always-on
+  Engineering Core one-liners. Goes to `~/.claude/CLAUDE.md`.
+- `commands/brief.md` — the `/brief` daily-brief slash command (world news +
+  where-you-left-off from the repo's diaries). Goes to `~/.claude/commands/`.
+
+## Full rebuild on a new machine
+
+The whole setup is plain text — it can be resurrected anywhere in five minutes:
+
+```bash
+git clone https://github.com/parthiv9817/parthiv-skills ~/Documents/parthiv-skills
+mkdir -p ~/.claude/skills ~/.claude/commands
+cp ~/Documents/parthiv-skills/persona/CLAUDE.md ~/.claude/CLAUDE.md
+cp ~/Documents/parthiv-skills/commands/brief.md ~/.claude/commands/brief.md
+for d in ~/Documents/parthiv-skills/skills/*/; do
+  ln -sfn "$d" ~/.claude/skills/"$(basename "$d")"
+done
+```
+
+What deliberately does NOT travel: project memories, diaries, and mistakes logs —
+those belong to each project/employer and stay behind. The *methodology* (daily
+diary + mistakes entries, month folders, mistakes→skills distillation) is the
+portable part; start a fresh corpus on day one and let new failures earn new
+skills. The persona is a costume; the logbook discipline is the character.
