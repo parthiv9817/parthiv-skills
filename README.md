@@ -1,11 +1,52 @@
 # parthiv-skills
 
-A portable, project-agnostic set of engineering guardrails for Claude Code —
+A portable, project-agnostic set of engineering guardrails —
 distilled from two months of my own documented mistakes, cross-checked against
 Andrej Karpathy's coding guidelines and Anthropic's subagent/cost guidance.
 
 **The point:** the best skills to encode are the ones you've already paid for in
-real failures. These ride with me into every project, alongside `superpowers`.
+real failures. These ride with me into every project.
+
+---
+
+## ⚠️ You are on the `ide-agnostic` branch
+
+This branch is the **model- and IDE-agnostic** variant: everything flattened into
+one always-on file (`AGENTS.md`) — persona, the always-on core, and all five
+disciplines inlined, because non-Claude tools have no on-demand skill loading.
+Use it to plug the same Zoro persona + guardrails into Cursor, Codex/ChatGPT,
+Windsurf, Gemini CLI, or Antigravity — any assistant that reads a context file.
+
+Born from the awear lesson: a Claude-only setup broke the moment Opus tokens ran
+out and the work moved to Gemini, because `superpowers`/`SKILL.md` don't travel.
+This variant does.
+
+`main` is the full **Claude Code** setup (on-demand `SKILL.md` loading + the
+`/brief` slash command). Use that where Claude Code is the host.
+
+### Install (portable variant)
+
+`AGENTS.md` is the canonical file. Filenames differ by tool; content is identical.
+
+| Tool | File it reads | Command |
+|---|---|---|
+| Cursor, Codex/ChatGPT, most AGENTS.md-aware IDEs | `AGENTS.md` | `./install-portable.sh codex .` |
+| Gemini CLI / Google tooling | `GEMINI.md` | `./install-portable.sh gemini .` |
+| Windsurf (older) | `.windsurfrules` | `./install-portable.sh windsurf .` |
+| Antigravity / other | try `AGENTS.md` first | `./install-portable.sh generic .` |
+
+`./install-portable.sh <tool> <target-dir>` copies `AGENTS.md` to the right
+filename in the target project. (Tool filename conventions move fast — `AGENTS.md`
+is the emerging cross-tool standard and the safest default; if a tool wants a
+different name, copy `AGENTS.md` to it.)
+
+**What you lose vs the Claude Code variant, honestly:** no progressive disclosure
+(the whole file is always in context — heavier, less elegant), no `/brief`
+command, and the guardrails are advisory context rather than tool-enforced skills.
+The persona and the discipline are identical; the delivery mechanism is cruder
+because the host tools are.
+
+---
 
 ## Architecture (hybrid)
 
